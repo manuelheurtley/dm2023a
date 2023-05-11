@@ -29,23 +29,24 @@ particionar  <- function( data,  division, agrupa="",  campo="fold", start=1, se
 #------------------------------------------------------------------------------
 
 #Aqui se debe poner la carpeta de la computadora local
-setwd("X:\\gdrive\\ITBA2023a\\")  #Establezco el Working Directory
+setwd("C:/Users/manue/OneDrive/Documentos/Manuel/Maestria/3-DataMining/datasets")  #Establezco el Working Directory
 
 #cargo los datos
-dataset  <- fread("./datasets/dataset_pequeno.csv")
+dataset  <- fread("dataset_pequeno.csv")
 
 #trabajo solo con los datos con clase, es decir 202107
 dataset  <- dataset[ clase_ternaria!= "" ]
 
 #particiono estratificadamente el dataset
 #Cambiar por la primer semilla de cada uno !
-particionar( dataset, division=c(7,3), agrupa="clase_ternaria", seed= 102191 )  #Cambiar por la primer semilla de cada uno !
+particionar( dataset, division=c(7,3), agrupa="clase_ternaria", seed= 151153 )  #Cambiar por la primer semilla de cada uno !
 
+#Semillas: 151153, 251207, 351293, 451327, 551377
 
 param_basicos  <- list( "cp"=         -1,  #complejidad minima
                         "minsplit"=  400,  #minima cantidad de registros en un nodo para hacer el split
                         "minbucket"=  10,  #minima cantidad de registros en una hoja
-                        "maxdepth"=    8 ) #profundidad máxima del arbol
+                        "maxdepth"=    4 ) #profundidad máxima del arbol
 
 #genero el modelo
 modelo  <- rpart("clase_ternaria ~ .",     #quiero predecir clase_ternaria a partir del resto
@@ -68,7 +69,7 @@ dataset[  , ganancia :=  ifelse( clase_ternaria=="BAJA+2", 117000, -3000 ) ]
 #para testing agrego la probabilidad
 dataset[ fold==2 , prob_baja2 := prediccion[, "BAJA+2"] ]
 
-#calculo la ganancia en testing  qu es fold==2
+#calculo la ganancia en testing  que es fold==2
 ganancia_test  <- dataset[ fold==2 & prob_baja2 >  0.025, sum(ganancia) ]
 
 #escalo la ganancia como si fuera todo el dataset
