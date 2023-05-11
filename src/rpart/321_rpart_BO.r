@@ -32,7 +32,7 @@ hs  <- makeParamSet(
           makeIntegerParam("maxdepth" , lower=  3L  , upper=   20L),
           forbidden = quote( minbucket > 0.5*minsplit ) )             # minbuket NO PUEDE ser mayor que la mitad de minsplit
 
-ksemilla_azar  <- 102191   #cambiar por la primer semilla
+ksemilla_azar  <- 151153   #cambiar por la primer semilla
 
 #------------------------------------------------------------------------------
 #graba a un archivo los componentes de lista
@@ -146,18 +146,17 @@ EstimarGanancia  <- function( x )
 #------------------------------------------------------------------------------
 #Aqui empieza el programa
 
-setwd("X:\\gdrive\\ITBA2023a\\")   #Establezco el Working Directory
+setwd("C:/Users/manue/OneDrive/Documentos/Manuel/Maestria/3-DataMining/datasets")   #Establezco el Working Directory
 
 #cargo los datos
-dataset  <- fread("./datasets/dataset_pequeno.csv")
+dataset  <- fread("dataset_pequeno.csv")
 #trabajo solo con los datos con clase, es decir 202107
 dataset  <- dataset[ clase_ternaria!= "" ]
 
 
 #creo la carpeta donde va el experimento
 # HT  representa  Hiperparameter Tuning
-dir.create( "./exp/",  showWarnings = FALSE ) 
-dir.create( "./exp/HT3210/", showWarnings = FALSE )
+# dir.create( "./exp/HT3210/", showWarnings = FALSE )
 setwd("./exp/HT3210/")   #Establezco el Working Directory DEL EXPERIMENTO
 
 
