@@ -1,6 +1,6 @@
 import  numpy as np
 
-np.random.seed(102191)
+np.random.seed(151153)
 
 #calcula cuantos encestes logra un jugador con indice de enceste prob
 #que hace qyt tiros libres
@@ -11,6 +11,7 @@ def ftirar(prob, qty):
 
 
 #defino los jugadores
+peloton = np.array(range(501, 600)) / 1000
 jordan = 0.85
 jugadores = [0.6] * 99
 jugadores = np.append(jordan, peloton)

@@ -1,6 +1,6 @@
 using Random
 
-Random.seed!(102191)
+Random.seed!(151153)
 
 #calcula cuantos encestes logra un jugador con indice de enceste prob
 #haciendo qyt tiros libres
@@ -31,7 +31,7 @@ for i = 1:10000  #diez mil experimentos
   mejor = findmax( vaciertos )
 
   if mejor[2] == 1
-      primero_ganador += 1
+    global primero_ganador += 1
   end
 end
 
